@@ -94,7 +94,7 @@ fi
 #------------------------
 # for prompt of terminal
 #------------------------
-export PS1="\u@m1_air@[\W]\$"
+export PS1="\u@\h@[\W]\$"
 #----------------
 # editor setting
 #----------------

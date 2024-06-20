@@ -44,8 +44,15 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 # There's no dircolors on MacOS? 
 # https://unix.stackexchange.com/a/91978
 # eval "$(dircolors -b)"
-export LS_COLORS='di=36;1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
+LS_COLORS='di=36;1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
 zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+if whence dircolors >/dev/null; then
+  export LS_COLORS
+  alias ls='ls --color'
+else
+  export CLICOLOR=1
+  export LSCOLORS=GxFxCxDxBxegedabagaced
+fi
 
 # Automatic ls after cd
 # https://stackoverflow.com/a/3964198
