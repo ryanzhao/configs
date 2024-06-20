@@ -2,5 +2,4 @@ A bunch of commonly used config files
 
 ## TODOs
 
-1. Add deploy script to alias configs files in $HOME dir to `dotfiles` dir
 1. Pull linux related alias and mac related alias
