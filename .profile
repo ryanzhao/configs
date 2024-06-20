@@ -82,42 +82,9 @@ else
     echo "system unidentified"
 fi
 
-#*********************************************
-# Common settings for linux and mac, not tested
-# under other platform
-#*********************************************
-#----------------
-# Useful aliases
-#----------------
-alias rm='rm -irv'
-alias scp='scp -r'
-alias cp='cp -rv'
-alias mv='mv -v'
-alias ssh='ssh -C'
-#----------------------------------------------
-# This is packup some necessary files to 
-# work on a new system; including .vim, .vimrc
-# part of .ssh and etc
-#----------------------------------------------
-alias newsys='tar cvf newsys_$(date +%Y%d%d_%H_%M_%S).tar --files-from .newsys'
-#--------------------------------------
-#refresh shell by call source .profile
-#--------------------------------------
-alias rfsh='source ~/.profile'
-#------------------------------------
-# to let grep has color for matching
-# Color	 Foreground	       Background
-# Black	    30	               40
-# Red	      31	               41
-# Green	    32	               42
-# Yellow    33	               43
-# Blue	    34	               44
-# Magenta   35	               45
-# Cyan	    36	               46
-# White	    37	               47
-#------------------------------------
-export GREP_COLOR='0;31'
-alias grep='grep --color=auto'
+if [ -f ~/.common_alias ]; then
+	source ~/.common_alias
+fi
 #-------------------------------
 #This one is for git completion
 #-------------------------------
@@ -145,7 +112,6 @@ _tma() {
 complete -F _tma tma
 alias tma='tmux attach -t $1'
 
-alias emacs='emacs -nw'
 
 # Eternal bash history.
 # ---------------------

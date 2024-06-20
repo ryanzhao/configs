@@ -1,0 +1,38 @@
+#*********************************************
+# Common settings for linux and mac, not tested
+# under other platform
+#*********************************************
+#----------------
+# Useful aliases
+#----------------
+alias rm='rm -irv'
+alias scp='scp -r'
+alias cp='cp -rv'
+alias mv='mv -v'
+alias ssh='ssh -C'
+#----------------------------------------------
+# This is packup some necessary files to 
+# work on a new system; including .vim, .vimrc
+# part of .ssh and etc
+#----------------------------------------------
+alias newsys='tar cvf newsys_$(date +%Y%d%d_%H_%M_%S).tar --files-from .newsys'
+#--------------------------------------
+#refresh shell by call source .profile
+#--------------------------------------
+alias rfsh='if [[ "$(ps -o comm= -p $$)" == "zsh" ]]; then source ~/.zshrc ; else source ~/.profile; fi'
+#------------------------------------
+# to let grep has color for matching
+# Color	 Foreground	       Background
+# Black	    30	               40
+# Red	      31	               41
+# Green	    32	               42
+# Yellow    33	               43
+# Blue	    34	               44
+# Magenta   35	               45
+# Cyan	    36	               46
+# White	    37	               47
+#------------------------------------
+export GREP_COLOR='0;31'
+alias grep='grep --color=auto'
+
+alias emacs='emacs -nw'

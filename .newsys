@@ -4,3 +4,5 @@
 .inputrc
 .tmux.conf
 .newsys
+.zshrc
+.common_alias
