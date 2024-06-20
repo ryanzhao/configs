@@ -4,12 +4,13 @@ import os
 import shutil
 from datetime import datetime
 
-if __name__ == "__main__":
-    cwd = os.getcwd()
+
+def main():
+    dotfiles_dir = os.path.dirname(__file__)
     home_dir = os.path.expanduser('~')
-    newsys_file = os.path.join(cwd, '.newsys')
+    newsys_file = os.path.join(dotfiles_dir, '.newsys')
     backup_name = f'backup_{datetime.now().strftime("%Y%m%d_%H%M%S")}'
-    backup_dir = os.path.join(cwd, backup_name)
+    backup_dir = os.path.join(dotfiles_dir, backup_name)
     os.mkdir(backup_dir)
     with open(newsys_file, 'r') as f:
         for line in f:
@@ -20,7 +21,11 @@ if __name__ == "__main__":
                 shutil.copy2(backup_src, backup_dst)
                 os.remove(backup_src)
                 print(f'backed up {backup_src} to {backup_dir}')
-                link_src = os.path.join(cwd, fname)
+                link_src = os.path.join(dotfiles_dir, fname)
                 link_dst = backup_src
                 os.symlink(link_src, link_dst)
                 print(f'created symlink at {link_dst} pointing to {link_src}')
+
+
+if __name__ == "__main__":
+    main()
