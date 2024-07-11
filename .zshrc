@@ -11,6 +11,7 @@ setopt histignorealldups sharehistory
 # Enable field splitting to be performed on unquoted parameter expansions.
 # Similar to bash shell
 # https://stackoverflow.com/a/6715447
+setopt SH_WORD_SPLIT
 
 # Use emacs keybindings even if our Editor is set to vim
 bindkey -e
