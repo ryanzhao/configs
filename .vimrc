@@ -50,9 +50,11 @@ autocmd VimEnter *
 
 let mapleader=","
 
+" Enable codefmt's default mappings on the <Leader>= prefix.
+Glaive codefmt plugin[mappings]
 augroup autoformat_settings
   " Alternative: autocmd FileType python AutoFormatBuffer autopep8
-  autocmd FileType python AutoFormatBuffer yapf
+  " autocmd FileType python AutoFormatBuffer yapf
 augroup END
 
 

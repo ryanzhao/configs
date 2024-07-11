@@ -8,8 +8,30 @@ PROMPT='%n@%m@[%1~]$'
 
 setopt histignorealldups sharehistory
 
+# Enable field splitting to be performed on unquoted parameter expansions.
+# Similar to bash shell
+# https://stackoverflow.com/a/6715447
+
 # Use emacs keybindings even if our Editor is set to vim
 bindkey -e
+
+# Bash-like navigation
+autoload -U select-word-style
+select-word-style bash
+# https://unix.stackexchange.com/a/726014
+WORDCHARS=${WORDCHARS/\/}
+WORDCHARS=${WORDCHARS/_}
+WORDCHARS=${WORDCHARS/=}
+
+# equivalent for .inputrc config
+# Cycle through history based on characters already typed on the line
+# https://unix.stackexchange.com/a/285151
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "\C-p" up-line-or-beginning-search
+bindkey "\C-n" down-line-or-beginning-search
 
 # Allow long history files
 HISTSIZE=99999999
@@ -38,7 +60,9 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select
 
 # See ZSHCOMPWID "completion matching control"
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# Case insensitive matcher
+# https://superuser.com/a/1092328
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Colors for files and directory
 # There's no dircolors on MacOS? 
