@@ -15,6 +15,8 @@ Plug 'honza/vim-snippets'
 
 " vim-lsp
 Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+" autocomplete
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
@@ -60,6 +62,34 @@ augroup END
 
 " TODO: learn nerdcommenter
 " TODO: learn tagbar
+
+nnoremap gd :LspDefinition<CR> " gd in Normal mode triggers gotodefinition
+nnoremap gx :LspReferences<CR> " gx in Nomral mode shows all references
+" Tab settings.
+" https://github.com/prabirshrestha/asyncomplete.vim
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" tab to show the autocomplete
+let g:asyncomplete_auto_popup = 0
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ asyncomplete#force_refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Fuzzy complete
+let g:asyncomplete_matchfuzzy = 1
+
+" -------------
+" fzf settings
+" -------------
+" Initialize configuration dictionary
+let g:fzf_vim = {}
+nnoremap <leader>f :Files<Cr>
 
 " ctrl-p
 let g:ctrlp_cmd = 'CtrlPBuffer'
